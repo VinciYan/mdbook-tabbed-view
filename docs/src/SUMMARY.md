@@ -1,3 +1,0 @@
-# Summary
-
-- [example](example.md)
