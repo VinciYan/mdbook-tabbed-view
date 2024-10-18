@@ -15,13 +15,8 @@ impl Preprocessor for TabbedViewPreprocessor {
         book.for_each_mut(|item| {
             if let mdbook::book::BookItem::Chapter(chapter) = item {
                 let mut new_content = String::new();
-                new_content.push_str(include_str!("css_template.html"));
-                new_content.push('\n');
-                
-                new_content.push_str(&self.process_chapter(&chapter.content));
-                new_content.push('\n');
-
-                chapter.content = new_content;
+                new_content.push_str(&self.process_chapter(&chapter.content));                
+                chapter.content = format!("{}\n{}", include_str!("css_template.html"), new_content);
             }
         });
         Ok(book)
